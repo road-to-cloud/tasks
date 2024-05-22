@@ -3,7 +3,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	base: '/tasks',
+	base: '/road-to-cloud',
 	integrations: [
 		starlight({
 			title: 'Road to Cloud',
