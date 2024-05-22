@@ -5,17 +5,22 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: 'Road to Cloud',
 			social: {
 				github: 'https://github.com/withastro/starlight',
 			},
 			sidebar: [
 				{
+					label: 'Tutorials',
+					autogenerate: { directory: 'tutorials' },
+				},
+				{
 					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
-					],
+					autogenerate: { directory: 'guides' }
+				},
+				{
+					label: 'Explanations',
+					autogenerate: { directory: 'explanations' }
 				},
 				{
 					label: 'Reference',
