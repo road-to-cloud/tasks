@@ -1,0 +1,91 @@
+---
+title: Local development environment
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+In this step you are going to install Docker, VS Code, and setup a DevContainer for your project.
+
+## Install Docker
+
+<Tabs>
+  <TabItem label="Docker Desktop for Windows & Mac" icon="laptop">
+    MacOS and Windows should install Docker Desktop. 
+    Follow the instructions for [MacOS](https://docs.docker.com/desktop/install/mac-install/) or [Windows](https://docs.docker.com/desktop/install/windows-install/)
+  </TabItem>
+  <TabItem label="Docker for Linux" icon="linux">
+    Choose your distribution and follow the steps on the [Docker website](https://docs.docker.com/engine/install/)
+  </TabItem>
+</Tabs>
+
+Verify your docker installation by running:
+
+```bash
+docker --version
+```
+
+## Install Visual Studio Code
+
+Install Visual Studio Code via your preferred option, such as the [Webpage](https://code.visualstudio.com/download) or a package manager.
+Verify your installation by opening Visual Studio Code.
+
+## Create a simple DevContainer
+
+- Open the command palette in Visual Studio Code by pressing `Ctrl+Shift+P` or `Cmd+Shift+P` on MacOS.
+- Type `Dev Container: Add Dev Container Configuration Files...` and select it.
+    - Hint the search is fuzzy, so you can type `dev add` and it should show up.
+- When selecting the template, choose `Ubuntu`, with the default settings.
+- Select the features you need, for example `Python`, and press `OK`
+    - You can select `Keep Defaults` in don't need a certain version or extra features & tools.
+- Done!
+
+You should now see a `.devcontainer` folder in your project with a `devcontainer.json` file.
+
+```json title=".devcontainer/devcontainer.json" {4-9}
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/devcontainers/features/python:1": {}
+	}
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
+```
+
+A popup should appear asking you to reopen the project in the DevContainer. Click `Reopen in Container`.
+If not, open the command palette and type `Dev Container: Reopen in Container`.
+
+:::note
+Depending on the features you selected, the DevContainer might take a few minutes to build.
+You can monitor the progress by clicking `show log` in the bottom right.
+:::
+
+Verify that you are in the DevContainer by opening a terminal in Visual Studio Code and running:
+
+```bash
+python --version
+```
+
+You should see the Python version installed in the DevContainer:
+
+```bash
+vscode ➜ /workspaces/python-gh-actions $ python --version
+Python 3.10.12
+```
