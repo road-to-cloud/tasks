@@ -8,7 +8,7 @@ export default defineConfig({
 		starlight({
 			title: 'Road to Cloud',
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/road-to-cloud/road-to-cloud',
 			},
 			sidebar: [
 				{
