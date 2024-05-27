@@ -13,18 +13,22 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Tutorials',
+					collapsed: false,
 					autogenerate: { directory: 'tutorials' },
 				},
 				{
 					label: 'Guides',
+					collapsed: false,
 					autogenerate: { directory: 'guides' }
 				},
 				{
 					label: 'Explanations',
+					collapsed: false,
 					autogenerate: { directory: 'explanations' }
 				},
 				{
 					label: 'Reference',
+					collapsed: true,
 					autogenerate: { directory: 'reference' },
 				},
 			],
