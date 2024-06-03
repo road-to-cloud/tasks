@@ -4,6 +4,8 @@ title: Simple Terminal Calculator
 
 The goal for this chapter, is to go through a more exhaustive Python program to act as base for the next chapter, *testing our own code*.
 
+The code (and the ones for the next chapter) is also available at: https://github.com/road-to-cloud/chapter-2-python-github
+
 As this shall not function as a sole Python tutorial, we will not go into the details of what, how and why, but here is a sample code for a simple terminal calculator:
 
 We define our supported operations as follows in the `operations.py` script:
