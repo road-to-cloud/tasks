@@ -1,0 +1,97 @@
+---
+title: Dev Containers
+description: Common patterns for using Dev Containers in VS Code
+---
+
+This guide provides common patterns for using Dev Containers in VS Code. Dev Containers are a way to define a development environment in a container that is isolated from your local machine. This allows you to have a consistent development environment across different machines and operating systems. Dev Containers are defined using a `devcontainer.json` file that specifies the Docker image to use, the extensions to install, and other settings. This guide will cover how to create a Dev Container, how to use it in VS Code, and common patterns for using Dev Containers in your development workflow.
+
+## Common Patterns
+
+### Creating a Dev Container
+
+There are two ways to create a Dev Container in VS Code:
+
+#### Manually creating a `devcontainer.json` file
+
+You can create a `devcontainer.json` file manually by adding it to your project folder.
+See the [Reference](https://containers.dev/implementors/json_reference/) for the file format and available fields.
+
+Using this way you need to manually define the template and features.
+
+- [Available Templates](https://containers.dev/templates)
+- [Available Features](https://containers.dev/features)
+
+#### Using VS Code
+
+- Open the command palette in Visual Studio Code by pressing `Ctrl+Shift+P` or `Cmd+Shift+P` on MacOS.
+- Type `Dev Container: Add Dev Container Configuration Files...` and select it.
+    - Hint the search is fuzzy, so you can type `dev add` and it should show up.
+- When selecting the template, choose `Ubuntu` for example, with the default settings.
+- Select the features you need, for example `Python`, and press `OK`
+    - You can select `Keep Defaults` in don't need a certain version or extra features & tools.
+- Done!
+
+You should now see a `.devcontainer` folder in your project with a `devcontainer.json` file.
+
+```json title=".devcontainer/devcontainer.json" {4-9}
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/devcontainers/features/python:1": {}
+	}
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
+```
+
+### Opening the current project in a DevContainer
+
+When opening a project which has a `devcontainer.json` file, you will be prompted to open the project in a DevContainer. If not, you can open the command palette and type `Dev Container: Reopen in Container`.
+
+:::note
+Depending on the features you selected, the DevContainer might take a few minutes to build.
+You can monitor the progress by clicking `show log` in the bottom right.
+:::
+
+### Adding features to the DevContainer
+
+There are again two ways to add features to the DevContainer, via the `devcontainer.json` file or using the command palette.
+
+Add [features](https://containers.dev/features) to the `devcontainer.json` file to install additional tools and extensions in the DevContainer.
+
+```diff json title=".devcontainer/devcontainer.json" 
+{
+    "name": "Ubuntu",
+    "image": "mcr.microsoft.com/devcontainers/base:jammy",
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {},
++        "ghcr.io/devcontainers/features/node:1": {}
+    }
+}
+```
+
+Or via the command palette: `Dev Container: Configure Container Features...` and select the features you need.
+
+You should be prompted to rebuild the DevContainer after adding features, if not [rebuild the DevContainer](#rebuilding-the-devcontainer).
+
+
+### Rebuilding the DevContainer
+
+If you need to rebuild the DevContainer, you can open the command palette and type `Dev Container: Rebuild Container` or a similar option.
